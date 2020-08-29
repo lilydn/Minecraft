@@ -36,3 +36,7 @@ function initWorldMatrix(matrix) {
     }
   }
 }
+
+function chooseTool() {
+  
+}
