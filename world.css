@@ -1,0 +1,183 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: #ebf0f2;
+  /* --menu-color: #131921; */
+  --menu-color: #202327;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+@font-face {
+  font-family: "Minecraft Font";
+  src: url("./minecraft-font.ttf") format("truetype");
+}
+
+body {
+  font-family: "Minecraft Font", sans-serif;
+  text-align: center;
+  font-size: 2rem;
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.menu-zone {
+  height: 100vh;
+  background-color: var(--menu-color);
+  min-width: 150px;
+  flex-grow: 1;
+}
+
+.world-zone {
+  height: 100vh;
+  flex-grow: 6;
+}
+
+ /* - - - - - - menu-zone-styling - - - - - - */
+
+.menu-zone_items-wrapper {
+  margin: 10% 10% 0 10%;
+  max-height: 97vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-wrapper {
+  margin: 6px 0;
+}
+
+.general-btn {
+  font-family: "Minecraft Font", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 1.8rem;
+  padding: 6px 0px 1px 0px;
+  width: 120px;
+  cursor: pointer;
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.general-btn:hover {
+  color: white;
+  background-color: black;
+  border: 2px solid white;
+}
+
+.tool {
+  width: 90px;
+  margin: 15px auto;
+  background-color: none;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+.tool:hover {
+  background-color: blue;
+}
+
+.tool_image {
+  height: 76px;
+  width: 81px;
+  margin: 0 auto;
+}
+
+.tool_name {
+  margin: 10px 0 3px 0;
+  color: var(--primary-color);
+}
+
+div[data-tool-name="pickaxe"] {
+  background: url("./img/tools/t-pickaxe.png") no-repeat center center/cover;
+  background-position: 4px -5px;
+  width: 85px;
+}
+
+div[data-tool-name="shovel"] {
+  background: url("./img/tools/t-shovel.png") no-repeat center center/cover;
+  background-position: -1px -2px;
+  width: 77px;
+}
+
+div[data-tool-name="axe"] {
+  background: url("./img/tools/t-axe.png") no-repeat center center/cover;
+  background-position: 1px -2px;
+}
+
+.inventory-wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap-reverse;
+  align-content: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.inventory-item-wrapper {
+  height: 5vh;
+  width: 5vh;
+  border: 1px solid rgb(174, 174, 174);
+  margin: 5px;
+}
+
+
+
+/* - - - - - - world-zone-styling - - - - - - */
+  /* Tile size
+  100vh/20tiles = each tile height 5 vh
+  and then make the width the same
+  */
+
+.world-matrix {
+  background-color: rgb(201, 201, 201);
+  width: 100vh;
+  height: 100vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(20, auto);
+  grid-template-rows: repeat(auto, auto);
+  /* width: fit-content; */
+}
+
+.tile:hover {
+  -webkit-box-shadow: inset 0px 0px 0px 1px rgba(205, 205, 205, 0.9);
+  -moz-box-shadow: inset 0px 0px 0px 1px rgba(205, 205, 205, 0.9);
+  box-shadow: inset 0px 0px 0px 1px rgba(205, 205, 205, 0.9);
+}
+
+div[data-tile-type="0"] {
+  background-color: rgb(131, 183, 238);
+}
+
+div[data-tile-type="1"] {
+  background-color: white;
+}
+
+div[data-tile-type="2"] {
+  background: url("./img/materials/soil.png") no-repeat center center/cover;
+}
+
+div[data-tile-type="3"] {
+  background: url("./img/materials/grass.png") no-repeat center center/cover;
+}
+
+div[data-tile-type="4"] {
+  background: url("./img/materials/stone.png") no-repeat center center/cover;
+}
+
+div[data-tile-type="5"] {
+  background: url("./img/materials/treeTrunck.png") no-repeat center center/cover;
+}
+
+div[data-tile-type="6"] {
+  background: url("./img/materials/treeBranch.jpeg") no-repeat center center/cover;
+}

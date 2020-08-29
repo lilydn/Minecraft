@@ -1,0 +1,59 @@
+@media only screen and (min-height: 870px) {
+  .inventory-wrapper,
+  .tools-wrapper {
+    margin-top: 3vh;
+  }
+}
+
+@media only screen and (max-height: 810px) and (min-height: 751px) {
+  .tool_image {
+    height: 66px;
+    width: 71px;
+  }
+
+  div[data-tool-name="pickaxe"] {
+    background: url("./img/tools/t-pickaxe.png") no-repeat center center/cover;
+    background-position: 8px -5px;
+    width: 74px;
+  }
+  
+  div[data-tool-name="shovel"] {
+    background: url("./img/tools/t-shovel.png") no-repeat center center/cover;
+    background-position: -1px 1px;
+    width: 65px;
+  }
+  
+  div[data-tool-name="axe"] {
+    background: url("./img/tools/axe.png") no-repeat center center/cover;
+    background-position: 6px 0px;
+    width: 78px;
+  }
+}
+
+@media only screen and (max-height: 750px) and (min-height: 621px)  {
+  .tool_image {
+    height: 36px;
+    width: 41px;
+  }
+
+  div[data-tool-name="pickaxe"] {
+    background: url("./img/tools/t-pickaxe.png") no-repeat center center/cover;
+    background-position: 8px -5px;
+    width: 50px;
+  }
+  
+  div[data-tool-name="shovel"] {
+    background: url("./img/tools/t-shovel.png") no-repeat center center/cover;
+    background-position: -1px 1px;
+    width: 45px;
+  }
+  
+  div[data-tool-name="axe"] {
+    background: url("./img/tools/axe.png") no-repeat center center/cover;
+    background-position: 6px 0px;
+    width: 46px;
+  }
+}
+
+/* ToDo
+// mobile */
