@@ -81,6 +81,10 @@ body {
   cursor: pointer;
 }
 
+.tool[data-tool-status="active"] {
+  background-color: blue;
+}
+
 .tool:hover {
   background-color: blue;
 }
@@ -127,6 +131,9 @@ div[data-tool-name="axe"] {
   width: 5vh;
   border: 1px solid rgb(174, 174, 174);
   margin: 5px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
 }
 
 

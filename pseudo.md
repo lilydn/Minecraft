@@ -33,27 +33,32 @@ two main divs:
   ```
   const tile = querySelectorAll("???");
   tile.setAttribute("data-type", "someType";
-  ??
+  or
   Using the dataset Property
+  tile.dataset.tileType = matrix[row][col];
   ```
 - `renderToolbox()` - give each tool box it's specific data attribute which will determine the tool. example:
   - data-tool-type: "axe"
-  - data-tool-state: 
-    - 0 => not active
-    - 1 => active. the tool is chosen. blue background.
-    - 2 => wrong. red background. <br> ~~To check: how to make it blink maybe better to dynamicly change with JS rather than CSS?~~
+  - data-tool-status: 
+    -  => not active
+    -  => active. the tool is chosen. blue background.
+    -  =>  the red background for wrong tool will be set dynamicly  with JS and brought back to blue with setTimeout method.
 - `chooseTool()` - when a tool is clicked: 
-  - update `currentTool` to e.
-  - set the attribute of 'data-tool-state'.
+  - update `currentTool`.
+  - set the attribute of 'data-tool-status'.
 - `chooseTile()` - when a tile is clicked: 
   - if there is no current tool, do nothing.
   - if there is a current tool, update `currentTileType` and call the function `applyTool()`
 - `applyTool()`:
-  - if the current tile type matches the current tool, call the function `removeTile()` and `addTileToInventory()`
-  - else: call the function `wrongTool()`
-- `wrongTool()`: ~~find a way to make the background blink red~~
-- `removeTile()`: set the tile 
-- `addTileToInventory()`:
+  - if the current tile type does not match the current tool, blink the background of the tool red.
+  - else, if the current tile type matches the current tool, call the function `removeTile()` and `pushToInventory()`
+
+
+
+- `removeTile()`: set the tile type to be 0 
+- `pushToInventory()`: the inventory works like a stack, and we always push to the end in this case. Every Node element if is not empty (if has a child) we clone the child to the element before it and remove it's child. For the first Node element we will just remove the child. <br> Then we push our new element as a child to the last element of our Node list.
+
+
 
 
 
