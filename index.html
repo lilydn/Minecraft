@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./index.css">
+  <title>Minecraft</title>
+</head>
+<body>
+  <div class="background">
+    <div class="header">
+      <img src="./img/minecraft-logo-heading.png" alt="minecraft-logo">
+    </div>
+    <div>
+      <button class="start-btn">start</button>
+    </div>
+    <div class="instructions">
+      <p>Instructions:</p>
+      <p>Remove tiles from the world, each tile is made from one material</p>
+      <p>The materials will be placed in your inventory</p>
+      <p>The inventory can hold up to 5 tiles</p>
+      <p>Each material can be removed only with the matching tool</p>
+      <p>Place the materials back in the world as you like!</p>
+      <p>Pay attention! you can take only the material that is the first in the inventory</p>
+      <p>Have fun!</p>
+    </div>
+  </div>
+  <script>
+    document.querySelector('.start-btn').addEventListener('click', () => location.href = "./world.html");
+  </script>
+</body>
+</html>

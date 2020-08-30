@@ -55,7 +55,7 @@ two main divs:
 
 
 
-- `removeTile()`: set the tile type to be 0 
+- `removeTileFromWorld()`: set the tile type to be 0 <br> ToDo handle clouds
 - `pushToInventory()`: the inventory works like a stack, and we always push to the end in this case. Every Node element if is not empty (if has a child) we clone the child to the element before it and remove it's child. For the first Node element we will just remove the child. <br> Then we push our new element as a child to the last element of our Node list.
 
 

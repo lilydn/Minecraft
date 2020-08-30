@@ -31,7 +31,8 @@ function initWorldMatrix(matrix) {
       let tile = document.createElement('div');
       tile.classList.add('tile');
       tile.dataset.tileType = matrix[row][col];
-      tile.dataset.tileCoordinates = `[${row}][${col}]`;
+      tile.dataset.tileCoordinateX = col;
+      tile.dataset.tileCoordinateY = row;
       document.querySelector('.world-matrix').appendChild(tile);
     }
   }
@@ -44,13 +45,13 @@ const tileElements = document.querySelectorAll('.tile');
 const invElements = document.querySelectorAll('.inventory-item-wrapper');
 let currentTool = '';
 let currentTileType = 0;
+let inventoryTileType = -1;
 
 
 
 
 toolElements.forEach(tool => tool.addEventListener('click', chooseTool));
-tileElements.forEach(tile => tile.addEventListener('click', chooseTile));
-
+invElements.forEach(inv => inv.addEventListener('click', chooseInvItem))
 
 
 
@@ -60,6 +61,7 @@ function chooseTool(e) {
   currentTool = e.currentTarget.children[0].dataset.toolName;
   setAllToolsNotActive();
   e.currentTarget.dataset.toolStatus = 'active';
+  tileElements.forEach(tile => tile.addEventListener('click', chooseTile));
 }
 
 function setAllToolsNotActive() {
@@ -69,7 +71,7 @@ function setAllToolsNotActive() {
 } 
 
 // when a tile is clicked, sets the current tileType to be the tileType number (ex.currentTileType='2')
-// checks if the tool that is was clicked with is matching
+// checks if the tool it was clicked with is matching
 // if not - blink background red
 // if is matching - remmove the tile and place it at the head of the inventory
 function chooseTile(e) {
@@ -82,8 +84,11 @@ function chooseTile(e) {
     }, 200);
   }
   else {
-    removeTile(e.currentTarget);
-    pushToInventory(currentTileType);
+    let inventoryFull = isInventoryFull();
+    if(!inventoryFull) {
+      removeTileFromWorld(e.currentTarget);
+      pushToInventory(currentTileType);
+    }
   }
 }
 
@@ -106,32 +111,79 @@ function checkIfToolMatchesTile() {
   return false;
 }
 
-function removeTile(tileDivToRemove) {
+function removeTileFromWorld(tileDivToRemove) {
   tileDivToRemove.dataset.tileType = '0';
 }
 
 // every node element if is not empty (if has a child), clones the child to the element before and removes it's child. 
-// for the first Node element, just removes the child.
-// push the new tile element as a child to the last element of our node list.
+// pushes the new tile element as a child to the last element of our node list.
 function pushToInventory(tileTypeToPush) {
   let pushedTile = document.createElement('div');
   pushedTile.dataset.tileType = tileTypeToPush;
-  if(invElements[0].hasChildNodes()) {
-    invElements[0].firstElementChild.remove();
-  }
-  for (let i = 1; i < invElements.length; i++) {
+
+  for (let i = 0; i < invElements.length; i++) {
     if(invElements[i].hasChildNodes()) {
       const clone = invElements[i].firstElementChild.cloneNode(true);
       invElements[i-1].appendChild(clone);
       invElements[i].removeChild(invElements[i].firstElementChild);
-      console.log(invElements[i]);
+      invElements[i-1].classList.add('stack-tail');
     }
   }
   invElements[4].appendChild(pushedTile);
+  invElements[4].classList.add('stack-head');
 }
 
 
+function isInventoryFull() {
+  if(invElements[0].hasChildNodes()) {
+    document.querySelector('.inventory-wrapper').style.boxShadow = "inset 0px 0px 0px 5px rgba(158,45,14,1)"
+    setTimeout(() => {
+      document.querySelector('.inventory-wrapper').style.boxShadow = "";
+    }, 200);
+    return true;
+  }
+  else return false;
+}
 
+
+function chooseInvItem(e) {
+  inventoryTileType = e.currentTarget.children[0].dataset.tileType;
+  e.currentTarget.dataset.invItem = 'clicked';
+  setAllToolsNotActive();
+  tileElements.forEach(tile => tile.addEventListener('click', placeInvItem));
+}
+
+function placeInvItem(e) {
+  currentTileType = e.currentTarget.dataset.tileType;
+  // can be placed only on empty space
+  if(currentTileType === '0' || currentTileType === '1') {
+    e.currentTarget.dataset.tileType = inventoryTileType;
+  }
+  /* if (inventoryTileType === -1) {
+    let coordinateX = e.currentTarget.dataset.tileCoordinateX;
+    let coordinateY = e.currentTarget.dataset.tileCoordinateY;
+    console.log(coordinateX + ',' + coordinateY);
+    if (worldMatrix[coordinateX][coordinateY] === 0) {
+      e.currentTarget.dataset.tileType = '0';
+    }
+    if (worldMatrix[coordinateX][coordinateY] === 1) {
+      e.currentTarget.dataset.tileType = '1';
+    }
+  } */
+  removeFromInventory();
+}
+
+function removeFromInventory() {
+  invElements[4].firstChild.remove();
+  inventoryTileType = 0;
+  currentTileType = 0;
+  currentTool = '';
+  for (let i = invElements.length-1; i > 0; i--) {
+      const clone = invElements[i-1].firstElementChild.cloneNode(true);
+      invElements[i].appendChild(clone);
+      invElements[i-1].removeChild(invElements[i-1].firstElementChild);
+  }
+}
 
 
 

@@ -1,0 +1,60 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+@font-face {
+  font-family: "Minecraft Font";
+  src: url("./minecraft-font.ttf") format("truetype");
+}
+
+.background {
+  height: 100vh;
+  background: url('./img/background-landing.png') repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.header img {
+  width: 48vw;
+}
+
+.start-btn {
+  font-family: "Minecraft Font", sans-serif;
+  font-size: 3.2rem;
+  padding: 10px 4px 5px 4px;
+  width: 120px;
+  cursor: pointer;
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.start-btn:hover {
+  color: white;
+  background-color: black;
+  border: 2px solid white;
+}
+
+.instructions {
+  margin-top: 10vh;
+}
+
+p {
+  font-family: "Minecraft Font", sans-serif;
+  letter-spacing: 1px;
+  font-size: 2.8rem;
+  color: rgb(220, 220, 220);
+  padding-top: 5px;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: black;
+}
