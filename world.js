@@ -38,6 +38,14 @@ function initWorldMatrix(matrix) {
   }
 }
 
+function deleteWorldMatrix(matrix) {
+  for (let row = 0; row < matrix.length; row++) {
+  document.querySelector('.world-matrix').childNodes.forEach(node => {
+    node.remove(node);
+  });
+}
+}
+
 //  - - - - - - - - - - - - - //
 
 const toolElements = document.querySelectorAll('.tool');
@@ -201,3 +209,16 @@ function chooseTool(e) {
   currentTool = e.currentTarget;
   console.log(currentTool);
 } */
+
+
+
+
+// - - - - - - - menu buttons - - - - - - - - //
+
+document.querySelector('#reset-btn').addEventListener('click', () => {
+  deleteWorldMatrix(worldMatrix)
+  initWorldMatrix(worldMatrix);
+});
+
+document.querySelector('#exit-btn').addEventListener('click', () => location.href = "./index.html"
+);
